@@ -25,13 +25,7 @@ export default {
       item: [
          {
           icon: "http://icons.iconarchive.com/icons/martz90/circle/256/messages-icon.png",
-          message : 'test 1',
-          seen: "false",
-          timestamp: 1527959349
-        },
-        {
-          icon: "http://icons.iconarchive.com/icons/martz90/circle/256/messages-icon.png",
-          message : 'test 2',
+          message : 'loading...',
           seen: "false",
           timestamp: 1527959349
         }
@@ -41,31 +35,11 @@ export default {
   methods: {
     ajaxCal(){
       console.log('API call');
-      console.log("this is ithem", this.item)
-      
-      var request = new XMLHttpRequest();
-      request.open('GET', 'https://api.myjson.com/bins/19wyhe');
-      request.onload = handleResponse;
-      request.send();
-
-      function handleResponse(){
-          
-        var newData = JSON.parse(request.response);
-        console.log(newData.length);
-        var result = [];      
-        console.log("novi ",result);
-        for (var i = 0; i < newData.length; i++) {  
-          console.log(newData[i]);
-                result.push({
-                icon: newData[i].icon,
-                message: newData[i].message,
-                seen: newData[i].seen,
-                timeout: newData[i].timeout
-             });  
-          }
-
-
-      }
+      fetch("https://api.myjson.com/bins/19wyhe")
+    .then(response => response.json())
+    .then((data) => {
+      this.item = data;
+    })
     }
   }
 }
