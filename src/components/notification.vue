@@ -6,7 +6,7 @@
           <li class="nav-item dropdown" >
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" >Notification <i class="fas fa-comment-alt"></i></a>
             <div class="dropdown-menu"  >
-              <div class="notificationBox" v-for="(value) in item">
+              <div class="notificationBox" v-for="(value, index) in item"  v-bind:class="value">
                 <img v-bind:src="value.icon" alt="" >
                  <a class="dropdown-item" href="#">{{ value.message }}</a>
               </div>
@@ -77,5 +77,8 @@ div.notificationBox{
 div.notificationBox img{
   height: 30px;
   /* margin: 10px; */
+}
+div.seen{
+  background: gray;
 }
 </style>
